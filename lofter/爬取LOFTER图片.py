@@ -1,4 +1,5 @@
-import urllib  
+import urllib 
+import urllib2
 import re  
   
 class Spider:#声明一个爬虫类  
