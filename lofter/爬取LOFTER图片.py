@@ -1,27 +1,27 @@
 import urllib  
-import urllib2#ÒıÈëurllib2¿â  
+import urllib2 
 import re  
   
-class Spider:#ÉùÃ÷Ò»¸öÅÀ³æÀà  
-    def __init__(self,url):#¹¹Ôìº¯Êı½øĞĞ³õÊ¼»¯£¬µÚ¶ş¸ö²ÎÊıÊÇÎÒÃÇÒª×¥µÄÍøÒ³url  
+class Spider:#å£°æ˜ä¸€ä¸ªçˆ¬è™«ç±»  
+    def __init__(self,url):#æ„é€ å‡½æ•°è¿›è¡Œåˆå§‹åŒ–ï¼Œç¬¬äºŒä¸ªå‚æ•°æ˜¯æˆ‘ä»¬è¦æŠ“çš„ç½‘é¡µurl  
         self.url=url  
-    def getPage(self):#»ñÈ¡ÍøÒ³ÄÚÈİµÄ·½·¨  
+    def getPage(self):#è·å–ç½‘é¡µå†…å®¹çš„æ–¹æ³•  
         url = self.url  
-        requests = urllib2.Request(url)#¹¹ÔìRequestÊµÀı  
+        requests = urllib2.Request(url)#æ„é€ Requestå®ä¾‹  
         response = urllib2.urlopen(requests)  
-        return response.read()#¶ÁÈ¡»ñµÃµÄÍøÒ³ÄÚÈİ  
-url = 'http://yangxiaomingmasato.lofter.com/'#Ä¿±êÍøÒ³µÄµØÖ·  
-spider = Spider(url)#´´½¨Ò»¸öÅÀ³æÊµÀı  
-content = spider.getPage()#»ñµÃÄ¿±êÍøÒ³ÄÚÈİ  
-pattern = re.compile('<div class="pic.*?<a class="img" href=.*?<img src="(.*?)"',re.S)#´´½¨·ûºÏÍ¼Æ¬µØÖ·¸ñÊ½µÄÕıÔò±í´ïÊ½  
-picUrls = re.findall(pattern,content)#ÔÚÍøÒ³ÄÚÈİÖĞ²éÑ¯·ûºÏÒªÇóµÄ×Ö·û´®  
-print len(picUrls)#¿´Ò»ÏÂ×¥µ½¼¸¸ö·ûºÏÒªÇóµÄµØÖ·  
+        return response.read()#è¯»å–è·å¾—çš„ç½‘é¡µå†…å®¹  
+url = 'http://yangxiaomingmasato.lofter.com/'#ç›®æ ‡ç½‘é¡µçš„åœ°å€  
+spider = Spider(url)#åˆ›å»ºä¸€ä¸ªçˆ¬è™«å®ä¾‹  
+content = spider.getPage()#è·å¾—ç›®æ ‡ç½‘é¡µå†…å®¹  
+pattern = re.compile('<div class="pic.*?<a class="img" href=.*?<img src="(.*?)"',re.S)#åˆ›å»ºç¬¦åˆå›¾ç‰‡åœ°å€æ ¼å¼çš„æ­£åˆ™è¡¨è¾¾å¼  
+picUrls = re.findall(pattern,content)#åœ¨ç½‘é¡µå†…å®¹ä¸­æŸ¥è¯¢ç¬¦åˆè¦æ±‚çš„å­—ç¬¦ä¸²  
+print len(picUrls)#çœ‹ä¸€ä¸‹æŠ“åˆ°å‡ ä¸ªç¬¦åˆè¦æ±‚çš„åœ°å€  
 num = 1  
 for picUrl in picUrls:  
-        pic = urllib.urlopen(picUrl)#´ò¿ªÍ¼Æ¬ÍøÖ·  
-        picData = pic.read()#¶ÁÈ¡Í¼Æ¬Êı¾İ  
-        picFile = open('pic-'+str(num)+'.jpg','wb')#´ò¿ª±¾µØÍ¼Æ¬ÎÄ¼ş  
-        picFile.write(picData)#Ğ´ÈëÍ¼Æ¬Êı¾İ  
-        picFile.close()#¹Ø±ÕÎÄ¼ş  
+        pic = urllib.urlopen(picUrl)#æ‰“å¼€å›¾ç‰‡ç½‘å€  
+        picData = pic.read()#è¯»å–å›¾ç‰‡æ•°æ®  
+        picFile = open('pic-'+str(num)+'.jpg','wb')#æ‰“å¼€æœ¬åœ°å›¾ç‰‡æ–‡ä»¶  
+        picFile.write(picData)#å†™å…¥å›¾ç‰‡æ•°æ®  
+        picFile.close()#å…³é—­æ–‡ä»¶  
         num +=1  
 
